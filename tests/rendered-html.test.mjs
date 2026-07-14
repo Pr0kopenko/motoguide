@@ -33,17 +33,22 @@ test("server-renders the finished Russian motoguide", async () => {
   assert.match(html, /<title>ВИРАЖ — мотомаршруты одного дня из Москвы<\/title>/i);
   assert.match(html, /Не «куда»/);
   assert.match(html, /Какой день вам нужен/);
-  assert.match(html, /Нижний\? Да/);
+  assert.doesNotMatch(html, /Нижний Новгород|Нижний\? Да/);
+  assert.match(html, /Еда по пути/);
+  assert.match(html, /Гранд-кафе Жан Иван/);
   assert.match(html, /Редакционная проверка: 14 июля 2026/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Codex is working/i);
 });
 
-test("renders six comparable route cards and a usable roadbook", async () => {
+test("renders nine comparable route cards and a usable roadbook", async () => {
   const response = await render();
   const html = await response.text();
 
-  assert.equal((html.match(/data-route-card/g) ?? []).length, 6);
+  assert.equal((html.match(/data-route-card/g) ?? []).length, 9);
   for (const routeName of [
+    "Истра — Руза — Звенигород",
+    "Дмитров — Талдом — Дубна",
+    "Коломна — Зарайск — Озёры",
     "Окское кольцо",
     "Западное малое",
     "Угра и арт-поля",
@@ -57,7 +62,9 @@ test("renders six comparable route cards and a usable roadbook", async () => {
   assert.match(html, /Roadbook \/ (?:<!-- -->)?01/);
   assert.match(html, /Главный риск/);
   assert.match(html, /Открыть цепочку точек/);
-  assert.match(html, /https:\/\/yandex\.ru\/maps\/\?rtext=/);
+  assert.match(html, /https:\/\/yandex\.ru\/maps\/\?rtext=55\.7934,37\.3727~/);
+  assert.match(html, /О заведении/);
+  assert.match(html, /На карте/);
   assert.match(html, /target=["']_blank["']/);
 });
 
