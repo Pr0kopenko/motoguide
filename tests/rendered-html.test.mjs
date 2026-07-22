@@ -30,21 +30,24 @@ test("server-renders the finished Russian motoguide", async () => {
 
   const html = await response.text();
   assert.match(html, /<html[^>]*lang=["']ru["']/i);
-  assert.match(html, /<title>ВИРАЖ — мотомаршруты одного дня из Москвы<\/title>/i);
+  assert.match(html, /<title>ВИРАЖ — мотомаршруты из Москвы<\/title>/i);
   assert.match(html, /Не «куда»/);
   assert.match(html, /Какой день вам нужен/);
   assert.doesNotMatch(html, /Нижний Новгород|Нижний\? Да/);
   assert.match(html, /Еда по пути/);
   assert.match(html, /Гранд-кафе Жан Иван/);
-  assert.match(html, /Редакционная проверка: 14 июля 2026/);
-  assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Codex is working/i);
+  assert.match(html, /Редакционная проверка: 22 июля 2026/);
+  assert.doesNotMatch(
+    html,
+    /codex-preview|Your site is taking shape|Codex is working/i,
+  );
 });
 
-test("renders nine comparable route cards and a usable roadbook", async () => {
+test("renders ten comparable route cards and a usable roadbook", async () => {
   const response = await render();
   const html = await response.text();
 
-  assert.equal((html.match(/data-route-card/g) ?? []).length, 9);
+  assert.equal((html.match(/data-route-card/g) ?? []).length, 10);
   for (const routeName of [
     "Истра — Руза — Звенигород",
     "Дмитров — Талдом — Дубна",
@@ -53,7 +56,8 @@ test("renders nine comparable route cards and a usable roadbook", async () => {
     "Западное малое",
     "Угра и арт-поля",
     "Кондуки",
-    "Верхняя Волга",
+    "Верхняя Волга через Нерль и Углич",
+    "Старица — Торжок",
     "Суздаль в обход М7",
   ]) {
     assert.match(html, new RegExp(routeName));
@@ -61,6 +65,8 @@ test("renders nine comparable route cards and a usable roadbook", async () => {
 
   assert.match(html, /Roadbook \/ (?:<!-- -->)?01/);
   assert.match(html, /Главный риск/);
+  assert.match(html, /Что за дорога/);
+  assert.match(html, /Торжок/);
   assert.match(html, /Открыть цепочку точек/);
   assert.match(html, /https:\/\/yandex\.ru\/maps\/\?rtext=55\.7934,37\.3727~/);
   assert.match(html, /О заведении/);
@@ -78,4 +84,5 @@ test("keeps product documentation and acceptance criteria in the repository", as
   assert.match(product, /## 6\. Критерии приёмки/);
   assert.match(product, /## 7\. Тестовый набор/);
   assert.match(product, /T12/);
+  assert.match(product, /T15/);
 });
