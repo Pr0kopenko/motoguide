@@ -190,7 +190,9 @@ a {
   padding: 18px 20px;
   text-decoration: none;
   text-transform: uppercase;
-  transition: background 160ms ease, color 160ms ease;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
 }
 
 .primary-link:hover {
@@ -200,7 +202,11 @@ a {
 
 .hero-map {
   background:
-    radial-gradient(circle at 50% 50%, rgba(223, 255, 56, 0.08), transparent 38%),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(223, 255, 56, 0.08),
+      transparent 38%
+    ),
     linear-gradient(135deg, #242824 0%, #111311 100%);
   border-left: 1px solid var(--white-line);
   margin: 4vh 3.5vw 12vh 0;
@@ -215,7 +221,13 @@ a {
     linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
   background-size: 46px 46px;
   inset: 0;
-  mask-image: linear-gradient(to bottom, transparent 0, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
   position: absolute;
 }
 
@@ -284,13 +296,31 @@ a {
   width: 8px;
 }
 
-.pin-center { left: 44%; top: 48%; }
-.pin-north { left: 38%; top: 14%; }
-.pin-east { right: 8%; top: 42%; }
-.pin-south { bottom: 11%; left: 45%; }
-.pin-west { left: 7%; top: 61%; }
+.pin-center {
+  left: 44%;
+  top: 48%;
+}
+.pin-north {
+  left: 38%;
+  top: 14%;
+}
+.pin-east {
+  right: 8%;
+  top: 42%;
+}
+.pin-south {
+  bottom: 11%;
+  left: 45%;
+}
+.pin-west {
+  left: 7%;
+  top: 61%;
+}
 .pin-east::before,
-.pin-west::before { background: var(--signal); box-shadow: 0 0 0 1px var(--signal); }
+.pin-west::before {
+  background: var(--signal);
+  box-shadow: 0 0 0 1px var(--signal);
+}
 
 .map-caption {
   bottom: 24px;
@@ -353,7 +383,10 @@ a {
 .section-heading {
   display: grid;
   gap: 3vw;
-  grid-template-columns: minmax(160px, 0.36fr) minmax(320px, 1fr) minmax(240px, 0.62fr);
+  grid-template-columns: minmax(160px, 0.36fr) minmax(320px, 1fr) minmax(
+      240px,
+      0.62fr
+    );
   margin: 0 auto 62px;
   max-width: 1500px;
 }
@@ -482,7 +515,9 @@ a {
   padding: 20px 10px 20px 0;
   position: relative;
   text-align: left;
-  transition: background 160ms ease, padding 160ms ease;
+  transition:
+    background 160ms ease,
+    padding 160ms ease;
   width: 100%;
 }
 
@@ -656,7 +691,7 @@ a {
   border-right: 1px solid var(--white-line);
 }
 
-.detail-metrics div:nth-last-child(-n+2) {
+.detail-metrics div:nth-last-child(-n + 2) {
   border-bottom: 0;
 }
 
@@ -672,6 +707,74 @@ a {
   font-size: 0.84rem;
   font-weight: 700;
   margin: 5px 0 0;
+}
+
+.road-profile,
+.overnight-box {
+  border: 1px solid var(--white-line);
+  margin: 0 0 18px;
+  padding: 20px;
+}
+
+.road-profile {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.road-profile span,
+.overnight-box span {
+  color: var(--acid);
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.road-profile ul {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.road-profile li {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  padding-left: 18px;
+  position: relative;
+}
+
+.road-profile li::before {
+  background: var(--acid);
+  border-radius: 50%;
+  content: "";
+  height: 6px;
+  left: 0;
+  position: absolute;
+  top: 0.55em;
+  width: 6px;
+}
+
+.overnight-box {
+  border-color: rgba(223, 255, 56, 0.35);
+}
+
+.overnight-box strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.overnight-box p {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  margin: 8px 0 0;
 }
 
 .roadbook {
